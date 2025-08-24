@@ -1,24 +1,54 @@
-# Core / data
-numpy==1.26.4
-pandas==2.2.2
+# ============================
+# Project: ANPR (YOLOv8 + SORT + EasyOCR)
+# Python: 3.9–3.11 recommended
+# Install: pip install -r requirements.txt
+# ============================
 
-# Computer vision / imaging
-opencv-python==4.10.0.84
-Pillow==10.3.0
-scikit-image==0.25.2
+# --- Core DL/YOLO stack ---
+# NOTE: If you have CUDA and want GPU builds, replace the torch/torchvision pins
+# with the CUDA-specific wheels for your CUDA version (see notes below).
+ultralytics>=8.1.0,<9.0.0
 
-# SORT tracker dependencies
-filterpy==1.4.5
-scipy==1.13.1
+# PyTorch (CPU wheels by default via pip)
+torch==2.2.2
+torchvision==0.17.2
 
-# Data utilities
-scikit-learn==1.5.1
-tqdm==4.66.4
-regex==2024.5.15
+# --- Vision / math / data ---
+numpy>=1.24.0,<2.0.0
+opencv-python>=4.8.0,<5.0.0
+pandas>=2.0.0,<2.3.0
+scipy>=1.10.0,<1.13.0
+pillow>=9.4.0
 
-# Detection / OCR (deep learning)
-# NOTE: install torch & torchvision first (see steps below)
-torch==2.7.1
-torchvision==0.22.1
-ultralytics==8.3.182
-easyocr==1.7.2
+# --- OCR ---
+easyocr>=1.7.1,<1.8.0
+
+# --- Tracking (SORT dependencies) ---
+# Many SORT implementations rely on a Kalman filter from FilterPy.
+filterpy>=1.4.5
+
+# --- Utilities (pulled transitively by Ultralytics/EasyOCR, pinned for stability) ---
+pyyaml>=6.0.0
+tqdm>=4.65.0
+requests>=2.31.0
+psutil>=5.9.0
+
+# ============================
+# Optional / environment notes
+# ============================
+# 1) If running on a headless server, you can swap:
+#    opencv-python -> opencv-python-headless
+#    (Everything in your code uses VideoCapture/Writer and no GUI windows.)
+#
+# 2) GPU builds for PyTorch (choose ONE set matching your CUDA):
+#    - CUDA 12.1:
+#        torch==2.2.2+cu121
+#        torchvision==0.17.2+cu121
+#        --extra-index-url https://download.pytorch.org/whl/cu121
+#    - CUDA 11.8:
+#        torch==2.2.2+cu118
+#        torchvision==0.17.2+cu118
+#        --extra-index-url https://download.pytorch.org/whl/cu118
+#
+# 3) EasyOCR uses PyTorch under the hood (you’ve set gpu=False in util.py,
+#    so CPU-only works out of the box).
