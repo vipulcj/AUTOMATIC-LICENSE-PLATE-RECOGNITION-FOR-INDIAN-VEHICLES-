@@ -241,8 +241,7 @@ Issues and PRs are welcome! If you contribute:
 
 ## License
 
-Choose a license that fits your use case (e.g., **MIT**, **Apache-2.0**).  
-Add a `LICENSE` file at the repository root.
+**Apache-2.0**.  
 
 ---
 
