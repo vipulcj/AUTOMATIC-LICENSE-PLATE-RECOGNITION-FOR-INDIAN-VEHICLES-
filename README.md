@@ -46,8 +46,8 @@ Video -> YOLOv8 (vehicle detection) -> SORT (tracking)
 ├── sort/                   # SORT tracker (expects sort/sort.py and dependencies)
 │   └── sort.py
 ├── INPD_more_accuracy_n.pt # Your license-plate YOLO weights (place in repo root)
-├──input.mp4
-├──output.mp4
+├── input.mp4
+├── output.mp4
 ├── requirements.txt
 └── README.md
 ```
